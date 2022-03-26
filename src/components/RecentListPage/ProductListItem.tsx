@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import {useNavigate} from "react-router-dom";
+
 import {IProductData} from "api/sample";
 import productImage from "api/images/product.jpeg";
 import usePastTime from "hooks/usePastTime";
@@ -8,9 +10,15 @@ interface ProductItemProps {
   data: IProductData;
 }
 
-const ProductListItem = ({data: {price, title, brand}}: ProductItemProps) => {
+const ProductListItem = ({
+  data: {id, price, title, brand},
+}: ProductItemProps) => {
+  const navigate = useNavigate();
   return (
-    <ProductWrapper>
+    <ProductWrapper
+      onClick={() => {
+        navigate(`/product?id=${id}`);
+      }}>
       <ImageWrapper>
         <ProductImage src={productImage} />
       </ImageWrapper>
