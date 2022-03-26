@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, ReactElement} from "react";
 import styled from "styled-components";
 
 import BaseButton from "components/ui/button";
@@ -8,7 +8,10 @@ import classNameBuilder from "util/classNameBuilder";
 
 import {getBrandLists} from "api/sample";
 
-const useBrandFilters = () => {
+const useBrandFilters = (): {
+  selectedToggleList: string[];
+  component: () => ReactElement;
+} => {
   const [brandList, setBrandList]: [string[], any] = useState([]);
   const {
     selectedMap: selectedToggleMap,
@@ -34,7 +37,7 @@ const useBrandFilters = () => {
 
   return {
     selectedToggleList,
-    render: () => (
+    component: () => (
       <FilterWrapper>
         <FilterButton
           className={classNameBuilder({
