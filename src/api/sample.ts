@@ -1,7 +1,15 @@
+import {getProductIdSortIndex} from "util/manageRecentProduct";
+
+export enum SortType {
+  RECENT = "recnet",
+  PRICE = "price",
+}
+
 export interface IProductData {
   title: string;
   brand: string;
   price: number;
+  id?: number;
 }
 
 const responseData = [
@@ -291,7 +299,7 @@ const responseData = [
 ];
 
 export const getProducts = async (): Promise<IProductData[]> => {
-  return responseData;
+  return responseData.map((data, idx) => ({...data, id: idx}));
 };
 
 export const getProductDetail = async (idx: number): Promise<IProductData> => {
@@ -308,4 +316,34 @@ export const getBrandLists = async (): Promise<string[]> => {
     brandList.push(brandName);
   });
   return brandList;
+};
+
+export const getBrandFilterdProducts = async (
+  brandNames: string[],
+  sortType: SortType,
+): Promise<IProductData[]> => {
+  const brandNameMap: Record<string, boolean> = {};
+  brandNames.forEach((brandName) => {
+    brandNameMap[brandName] = true;
+  });
+  const products = await getProducts();
+  const sortIndex = getProductIdSortIndex();
+
+  const filteredProducts = products
+    .filter((product) => {
+      console.log(product.brand, brandNameMap[product.brand]);
+      return brandNameMap[product.brand];
+    })
+    .sort((a, b) => {
+      if (sortType === SortType.RECENT) {
+        // RECENT
+        return sortIndex[`${a.id}`] - sortIndex[`${b.id}`];
+      }
+      if (sortType === SortType.PRICE) {
+        // PRICE
+        return a.price - b.price;
+      }
+      return 0;
+    });
+  return filteredProducts;
 };
