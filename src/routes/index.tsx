@@ -1,5 +1,6 @@
 import React from "react";
 import {Route, Routes} from "react-router-dom";
+import KeepAlive from "react-activation";
 
 import ProductPage from "../pages/ProductPage";
 import RecentListPage from "../pages/RecentListPage";
@@ -10,7 +11,14 @@ const RoutesIndex = () => {
     <>
       <Routes>
         <Route path="/product" element={<ProductPage />} />
-        <Route path="/recentList" element={<RecentListPage />} />
+        <Route
+          path="/recentList"
+          element={
+            <KeepAlive>
+              <RecentListPage />
+            </KeepAlive>
+          }
+        />
         <Route path="*" element={<E404Page />} />
       </Routes>
     </>
