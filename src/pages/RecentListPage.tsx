@@ -4,7 +4,6 @@ import useBrandFilters from "components/RecentListPage/BrandFilters";
 
 const RecentListPage = () => {
   const {selectedToggleList, render: BrandFilers} = useBrandFilters();
-  console.log(selectedToggleList);
 
   return (
     <BaseLayout>

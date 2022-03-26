@@ -10,6 +10,10 @@ import ProductInfo from "components/ProductPage/ProductInfo";
 import RandomProductButton from "components/ProductPage/RandomProductButton";
 
 import getRandomProductIdx from "util/getRandomProductIdx";
+import {
+  appendRecentProductId,
+  getRecentProductIds,
+} from "util/manageRecentProduct";
 
 const ProductPage = () => {
   const [productId, setProductId]: [number, any] = useState(
@@ -21,6 +25,7 @@ const ProductPage = () => {
   const getProductData = async (id: number) => {
     const productDetailInfo = await getProductDetail(id);
     setProductDetail(productDetailInfo);
+    appendRecentProductId(id);
   };
 
   const shuffleProductId = () => {
