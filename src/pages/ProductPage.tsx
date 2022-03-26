@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useMemo} from "react";
 import styled from "styled-components";
+import queryString from "query-string";
 
 import {getProductDetail, IProductData} from "api/sample";
 
@@ -10,15 +11,18 @@ import ProductInfo from "components/ProductPage/ProductInfo";
 import RandomProductButton from "components/ProductPage/RandomProductButton";
 
 import getRandomProductIdx from "util/getRandomProductIdx";
-import {
-  appendRecentProductId,
-  getRecentProductIds,
-} from "util/manageRecentProduct";
+import {appendRecentProductId} from "util/manageRecentProduct";
 
 const ProductPage = () => {
-  const [productId, setProductId]: [number, any] = useState(
-    getRandomProductIdx(),
-  );
+  const queryData = queryString.parse(window.location.search);
+  const defaultProductId = useMemo(() => {
+    if (Number.isNaN(Number(queryData.id))) {
+      return getRandomProductIdx();
+    }
+    return Number(queryData.id);
+  }, []);
+
+  const [productId, setProductId]: [number, any] = useState(defaultProductId);
   const [productDetail, setProductDetail]: [IProductData | null, any] =
     useState(null);
 
