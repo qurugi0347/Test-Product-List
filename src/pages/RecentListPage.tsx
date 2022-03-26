@@ -3,11 +3,11 @@ import BaseLayout from "components/layout/base/BaseLayout";
 import useBrandFilters from "components/RecentListPage/BrandFilters";
 
 const RecentListPage = () => {
-  const {selectedToggleList, component: BrandFilers} = useBrandFilters();
+  const {selectedToggleList, component: BrandFilters} = useBrandFilters();
 
   return (
     <BaseLayout>
-      <BrandFilers />
+      <BrandFilters />
     </BaseLayout>
   );
 };
