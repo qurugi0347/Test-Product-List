@@ -1,7 +1,8 @@
 import React from "react";
+import BaseLayout from "components/layout/base/BaseLayout";
 
-const ProductPage = (): JSX.Element => {
-  return <div>ProductPage</div>;
+const ProductPage = () => {
+  return <BaseLayout>ProductPage</BaseLayout>;
 };
 
 export default ProductPage;
