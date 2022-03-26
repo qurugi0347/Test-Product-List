@@ -297,3 +297,15 @@ export const getProducts = async (): Promise<IProductData[]> => {
 export const getProductDetail = async (idx: number): Promise<IProductData> => {
   return responseData[idx];
 };
+
+export const getBrandLists = async (): Promise<string[]> => {
+  const brands = responseData.map((data) => {
+    return data.brand;
+  });
+  const brandList: string[] = [];
+  const brandSet = new Set(brands);
+  brandSet.forEach((brandName) => {
+    brandList.push(brandName);
+  });
+  return brandList;
+};

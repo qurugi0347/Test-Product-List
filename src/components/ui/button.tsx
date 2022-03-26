@@ -15,11 +15,6 @@ const BaseButton = styled.button`
     font-weight: 400;
     line-height: 15px;
   }
-  &.inverse {
-    background: var(--black);
-    border-color: var(--black);
-    color: var(--white);
-  }
 `;
 
 export default BaseButton;
