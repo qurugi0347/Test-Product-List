@@ -16,6 +16,10 @@
   background: var(--white);
 }
 
+button {
+  cursor: pointer;
+}
+
 html,
 body,
 #root {
