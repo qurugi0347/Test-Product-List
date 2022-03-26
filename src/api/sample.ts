@@ -331,7 +331,6 @@ export const getBrandFilterdProducts = async (
 
   const filteredProducts = products
     .filter((product) => {
-      console.log(product.brand, brandNameMap[product.brand]);
       return brandNameMap[product.brand];
     })
     .sort((a, b) => {

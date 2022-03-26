@@ -70,6 +70,9 @@ const useBrandFilters = (): {
 };
 
 const FilterWrapper = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 2;
   width: 100%;
   overflow-x: scroll;
   white-space: nowrap;

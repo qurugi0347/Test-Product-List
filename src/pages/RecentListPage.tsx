@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import BaseLayout from "components/layout/base/BaseLayout";
 import useBrandFilters from "components/RecentListPage/BrandFilters";
+import ProductList from "components/RecentListPage/ProductList";
 import {getBrandFilterdProducts, SortType, IProductData} from "api/sample";
 
 const RecentListPage = () => {
@@ -23,7 +24,10 @@ const RecentListPage = () => {
 
   return (
     <BaseLayout>
-      <BrandFilters />
+      <>
+        <BrandFilters />
+        <ProductList data={productData} />
+      </>
     </BaseLayout>
   );
 };
