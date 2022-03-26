@@ -28,6 +28,9 @@ const ProductPage = () => {
 
   const getProductData = async (id: number) => {
     const productDetailInfo = await getProductDetail(id);
+    if (!productDetailInfo) {
+      alert("상품을 찾을 수 없습니다.");
+    }
     setProductDetail(productDetailInfo);
     appendRecentProductId(id);
   };
