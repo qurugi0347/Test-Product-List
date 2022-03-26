@@ -1,17 +1,19 @@
 module.exports = {
-  env: {
-    browser: true,
-    es6: true,
-    node: true,
-    jquery: true,
-    es2021: true,
-  },
-  extends: ["airbnb-base", "prettier", "plugin:react/recommended"],
-  plugins: ["prettier", "react", "react-hooks"],
+  parser: "@typescript-eslint/parser",
+  plugins: ["@typescript-eslint", "prettier"],
+  extends: [
+    "airbnb-base",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:prettier/recommended",
+  ],
   settings: {
     "import/resolver": {
       node: {
         paths: ["src/"],
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
       },
     },
   },
@@ -22,13 +24,17 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
     requireConfigFile: false,
-    parser: "@babel/eslint-parser",
+    parser: "@typescript-eslint/parser",
+    parserOptions: {
+      project: "./tsconfig.json",
+    },
   },
   rules: {
     "no-underscore-dangle": "off",
     "no-param-reassign": ["error", {props: false}],
     "no-mixed-operators": "off",
     "no-restricted-syntax": "off",
+    "no-use-before-define": "off",
     "no-unused-vars": "warn",
     "no-plusplus": "off",
     "no-continue": "off",
@@ -43,7 +49,16 @@ module.exports = {
     "arrow-body-style": "off",
     "import/no-named-as-default": "off",
     "import/no-named-as-default-member": "off",
-    "react-hooks/exhaustive-deps": "warn",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        js: "never",
+        jsx: "never",
+        ts: "never",
+        tsx: "never",
+      },
+    ],
   },
   globals: {},
 };
