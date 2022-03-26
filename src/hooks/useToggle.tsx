@@ -37,10 +37,10 @@ const useToggle = ({toggleList, defaultSelected = []}: UseToggleProps) => {
     [selectedMap],
   );
 
-  const init = () => {
+  const init = (defaultSelectAll: boolean) => {
     const defaultSelectMap: Record<string, boolean> = {};
     toggleList.forEach((key) => {
-      defaultSelectMap[key] = false;
+      defaultSelectMap[key] = defaultSelectAll ?? false;
     });
     defaultSelected.forEach((key) => {
       defaultSelectMap[key] = true;
@@ -49,7 +49,7 @@ const useToggle = ({toggleList, defaultSelected = []}: UseToggleProps) => {
   };
 
   useEffect(() => {
-    init();
+    init(false);
   }, []);
 
   return {

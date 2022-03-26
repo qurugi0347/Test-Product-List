@@ -28,7 +28,7 @@ const useBrandFilters = (): {
   };
 
   useEffect(() => {
-    initToggle();
+    initToggle(true);
   }, [brandList]);
 
   useEffect(() => {
