@@ -8,11 +8,8 @@ import SortSelectModal from "./SortSelectModal";
 const useSortSection = () => {
   const [sortType, setSortType]: [SortType, any] = useState(SortType.RECENT);
   const [openModal, setOpenModal]: [boolean, any] = useState(false);
-  const searchCount = useMemo(() => {
-    return getRecentProductIds().length;
-  }, []);
 
-  const component = () => (
+  const component = ({searchCount}: {searchCount: number}) => (
     <>
       <SectionWrapper>
         <SearchCount>조회한 상품 {searchCount}개</SearchCount>

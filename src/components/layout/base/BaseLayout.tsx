@@ -11,7 +11,7 @@ const BaseLayout = ({children}: BaseLayoutProps) => {
   return (
     <>
       <HeaderSection />
-      <ContentWrapper>{children}</ContentWrapper>
+      <ContentWrapper id="contentWrapper">{children}</ContentWrapper>
       <FooterMenu />
     </>
   );

@@ -21,6 +21,15 @@ interface FilteredProductsDTO extends ProductByIdsDTO {
   brandNames: string[];
   sortType: SortType;
   productIds: number[];
+  page?: number;
+}
+
+interface PaginationResult<T> {
+  page: number;
+  data: T[];
+  dataLength: number;
+  maxPage: number;
+  limit: number;
 }
 
 export const getProducts = async ({
@@ -48,11 +57,12 @@ export const getBrandLists = async (): Promise<string[]> => {
   return brandList;
 };
 
-export const getBrandFilterdProducts = async ({
+export const getRecentProducts = async ({
   brandNames,
   sortType,
   productIds,
-}: FilteredProductsDTO): Promise<IProductData[]> => {
+  page = 1,
+}: FilteredProductsDTO): Promise<PaginationResult<IProductData>> => {
   const brandNameMap: Record<string, boolean> = {};
   brandNames.forEach((brandName) => {
     brandNameMap[brandName] = true;
@@ -75,5 +85,12 @@ export const getBrandFilterdProducts = async ({
       }
       return 0;
     });
-  return filteredProducts;
+  const limit = 10;
+  return {
+    data: filteredProducts.slice((page - 1) * limit, page * limit),
+    limit,
+    maxPage: Math.ceil(filteredProducts.length / limit),
+    page,
+    dataLength: filteredProducts.length,
+  };
 };

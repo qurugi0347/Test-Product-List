@@ -47,6 +47,7 @@ module.exports = {
     "react/prop-types": "off",
     "class-methods-use-this": "off",
     "arrow-body-style": "off",
+    "consistent-return": "off",
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": "error",
     "import/no-named-as-default": "off",
