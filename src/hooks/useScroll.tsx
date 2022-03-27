@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useMemo} from "react";
 
 interface ScrollCallbackProps {
   onBottom?: () => any;
@@ -9,9 +9,7 @@ const useScroll = (elementId: string, options: ScrollCallbackProps) => {
   const {onBottom, onTop} = options;
 
   useEffect(() => {
-    const element: HTMLElement = document.getElementById(
-      elementId,
-    ) as HTMLElement;
+    const element = document.getElementById(elementId) as HTMLElement;
     if (!element) return;
     const onScrollEvent = () => {
       if (element.clientHeight + element.scrollTop === element.scrollHeight) {
@@ -27,6 +25,14 @@ const useScroll = (elementId: string, options: ScrollCallbackProps) => {
       element.removeEventListener("scroll", onScrollEvent);
     };
   }, [elementId]);
+  return {
+    scrollToTop: () => {
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.scrollTo(0, 0);
+      }
+    },
+  };
 };
 
 export default useScroll;

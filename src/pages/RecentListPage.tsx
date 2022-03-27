@@ -17,7 +17,7 @@ const RecentListPage = () => {
   const [page, setPage]: [number, any] = useState(1);
   const [maxPage, setMaxPage]: [number, any] = useState(1);
   const [dataLength, setDataLength]: [number, any] = useState(0);
-  useScroll("contentWrapper", {
+  const {scrollToTop} = useScroll("contentWrapper", {
     onBottom: () => {
       setPage((prevPage: number) => prevPage + 1);
     },
@@ -36,6 +36,7 @@ const RecentListPage = () => {
   };
 
   useEffect(() => {
+    scrollToTop();
     setProductData([]);
     if (page === 1) {
       getFilteredProductData();

@@ -50,6 +50,7 @@ module.exports = {
     "consistent-return": "off",
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": "error",
+    "@typescript-eslint/no-empty-function": "warn",
     "import/no-named-as-default": "off",
     "import/no-named-as-default-member": "off",
     "import/extensions": [
