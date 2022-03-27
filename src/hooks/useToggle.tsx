@@ -26,7 +26,7 @@ const useToggle = ({toggleList, defaultSelected = []}: UseToggleProps) => {
       selectMap[key] = !isAllSelected;
     });
     setSelected(selectMap);
-  }, [isAllSelected]);
+  }, [isAllSelected, toggleList]);
 
   const toggleItem = useCallback(
     (toggleKey: string) => {
