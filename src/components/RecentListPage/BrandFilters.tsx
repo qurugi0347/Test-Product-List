@@ -10,6 +10,7 @@ import {getBrandLists} from "api/sample";
 
 const useBrandFilters = (): {
   selectedToggleList: string[];
+  resetBrandFilter: () => void;
   component: () => ReactElement;
 } => {
   const [brandList, setBrandList]: [string[], any] = useState([]);
@@ -35,8 +36,13 @@ const useBrandFilters = (): {
     getBrandListData();
   }, []);
 
+  const resetBrandFilter = () => {
+    initToggle(true);
+  };
+
   return {
     selectedToggleList,
+    resetBrandFilter,
     component: () => (
       <FilterWrapper>
         <FilterButton

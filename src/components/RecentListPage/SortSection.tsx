@@ -9,6 +9,11 @@ const useSortSection = () => {
   const [sortType, setSortType]: [SortType, any] = useState(SortType.RECENT);
   const [openModal, setOpenModal]: [boolean, any] = useState(false);
 
+  const resetSortSection = () => {
+    setSortType(SortType.RECENT);
+    setOpenModal(false);
+  };
+
   const component = ({searchCount}: {searchCount: number}) => (
     <>
       <SectionWrapper>
@@ -55,6 +60,7 @@ const useSortSection = () => {
 
   return {
     sortType,
+    resetSortSection,
     component,
   };
 };
